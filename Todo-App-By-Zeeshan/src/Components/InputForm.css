@@ -1,0 +1,32 @@
+.form{
+    background-color: #3498db;
+    text-align: center;
+    min-height: 300px;
+    width: 70%;
+    margin: 2% auto;
+    border-radius: 5px;
+
+}
+
+#todo-form input{
+    background-color: #1a5276;
+    color: white;
+    width: 50%;
+    font-size: 18px;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px;
+    border: 0;
+    
+}
+
+#todo-form button{
+    background-color: #21618c;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px;
+    border: 0;
+    
+}
