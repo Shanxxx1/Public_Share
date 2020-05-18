@@ -7,7 +7,10 @@ class InputForm extends Component{
     constructor(props){
         super(props)
         this.state = {
-            name: props.name,
+            text:{
+            name: "",
+            update: ""
+            },
             todo: []
         }
     }
@@ -16,12 +19,15 @@ class InputForm extends Component{
     FormSubmit = (event)=>{
         
         event.preventDefault();
-        let InputData = this.state.name
+        let InputData = this.state.text
         let todo = this.state.todo
         //console.log(todo)
         todo.push(InputData);
         this.setState({
-            name: "",
+            text:{
+                name: "",
+                update: ""
+                 },
             todo: todo            
         })
     }
@@ -30,22 +36,49 @@ class InputForm extends Component{
     HandleInput = (event)=>{
         //console.log(event.target.value)
         this.setState( {
-            name: event.target.value
+            text:{
+            name: event.target.value,
+            update: Date.now()
+        }
         } )
     }
 
     /// Handle remove item
-    HandleRemove = (name)=>{
-        console.log(name)
-        let delItem = name
+    HandleRemove = (update)=>{
+        console.log(update)
+        
+        //let delItem = name
+        let delItem = update
+        //let todo = this.state.todo
         let todo = this.state.todo
+        console.log(todo)
 
-        const deleteItem = this.state.todo.filter(item => item !== delItem)
+        const deleteItem = this.state.todo.filter(item => item.update !== delItem)
 
-        //console.log(filteredItems)
+        console.log(deleteItem,"abc")
           this.setState( {
            todo:deleteItem
           } )
+    }
+
+
+    /// Edit Input
+    EditInput = (text, update)=>{
+        //console.log(text, update)
+        let todo = this.state.todo
+        console.log(todo)
+
+       todo.map(sarimitem =>{
+            if(sarimitem.update===update){
+                sarimitem.name=text;
+            }
+        })
+        this.setState({
+            todo:todo
+        })
+
+        
+
     }
 
     render(){
@@ -58,7 +91,7 @@ class InputForm extends Component{
                     <button>Add</button>
                 </form>
                 <br />
-                <ListItems value={this.state.todo} HandleRemove={this.HandleRemove}></ListItems>
+                <ListItems value={this.state.todo} HandleRemove={this.HandleRemove} EditInput={this.EditInput}></ListItems>
                 </div>
         )
     }

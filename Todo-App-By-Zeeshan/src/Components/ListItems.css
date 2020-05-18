@@ -21,3 +21,11 @@ button{
     border: 0;
     
 }
+
+.editinput{
+    background-color: #1a5276;
+    color: white;
+    width: 70%;
+    font-size: 14px;
+    border: none;
+}
